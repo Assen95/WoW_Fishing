@@ -23,6 +23,8 @@ class MainAgent:
 def update_screen(agent):
     
     initial_time = time.time()
+    fps_report_delay = 5
+    fps_report_time = time.time()
     
     while True:
         agent.current_image = ImageGrab.grab()
@@ -35,8 +37,11 @@ def update_screen(agent):
         if key == ord('q'):
             break
         execution_time = time.time() - initial_time
-        #print("FPS: " + str(1 / (execution_time)))
+        if time.time() - fps_report_time >= fps_report_delay:
+            print("FPS: " + str(1 / (execution_time)))
+            fps_report_time = time.time()
         initial_time = time.time()
+        time.sleep(0.005)
     
 def print_menu():
     print("Enter a command:")
