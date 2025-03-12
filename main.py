@@ -3,6 +3,8 @@ import numpy
 import cv2 
 import time
 from threading import Thread
+from fishing.fishing_agent import FishingAgent 
+
 
 class MainAgent:
     def __init__(self):
@@ -28,19 +30,19 @@ def update_screen(agent):
         agent.current_image = cv2.cvtColor(agent.current_image, cv2.COLOR_RGB2BGR)
         agent.ccurrent_image_hsv = cv2.cvtColor(agent.current_image, cv2.COLOR_BGR2HSV)
         
-        cv2.imshow("Screenshot", agent.current_image)
+        #cv2.imshow("Screenshot", agent.current_image)
         key = cv2.waitKey(1)
         if key == ord('q'):
             break
         execution_time = time.time() - initial_time
-        print("FPS: " + str(1 / (execution_time)))
+        #print("FPS: " + str(1 / (execution_time)))
         initial_time = time.time()
     
 def print_menu():
     print("Enter a command:")
     print("\tS\tStart the main agent.")
     print("\tZ\tSet zone.")
-    print("t\F\t\Start the fishing agent.")
+    print("\tF\tStart the fishing agent.")
     print("\tQ\tQuit wowzer.")
     
     
@@ -64,7 +66,9 @@ if __name__ == "__main__":
         elif user_input == "z":
             pass
         elif user_input == "f":
-            pass
+            fishing_agent = FishingAgent(main_agent)
+            fishing_agent.run()
+            
         elif user_input == "q":
             cv2.destroyAllWindows()
             break

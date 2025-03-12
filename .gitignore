@@ -23,3 +23,6 @@ env/
 
 # Ignore text file
 notes.txt
+
+#Ignore assets folder
+fishing/assets/
