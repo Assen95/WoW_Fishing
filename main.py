@@ -30,7 +30,7 @@ def update_screen(agent):
         agent.current_image = ImageGrab.grab()
         agent.current_image = numpy.array(agent.current_image)
         agent.current_image = cv2.cvtColor(agent.current_image, cv2.COLOR_RGB2BGR)
-        agent.ccurrent_image_hsv = cv2.cvtColor(agent.current_image, cv2.COLOR_BGR2HSV)
+        agent.current_image_hsv = cv2.cvtColor(agent.current_image, cv2.COLOR_BGR2HSV)
         
         #cv2.imshow("Screenshot", agent.current_image)
         key = cv2.waitKey(1)
